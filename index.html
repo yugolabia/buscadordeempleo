@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUSCADOR DE EMPLEOS RECIENTES EN LINKEDIN</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#ffffff">
+    <link href="https://cdn.tailwindcss.com/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <a href="https://www.linkedin.com/company/yugolabia/" target="_blank">
+            <img src="https://i.ibb.co/LdXDHgcF/Yugo-Labia-Email-Header.png" alt="LOGO DE LA AGENCIA YUGOLABIA" class="agency-logo">
+        </a>
+        
+        <div class="description">
+            <p>LA INTERFAZ DE LINKEDIN LIMITA LAS BÚSQUEDAS DE EMPLEOS A FILTROS DE TIEMPO COMO "CUALQUIER MOMENTO", "MES PASADO", "SEMANA PASADA" O "ÚLTIMAS 24 HORAS".</p>            
+            <p>ESTA APP TE PERMITE BUSCAR EMPLEOS PUBLICADOS ENTRE LAS ÚLTIMAS 1 Y 12 HORAS.</p>
+        </div>
+        
+        <h1>BUSCADOR DE EMPLEOS RECIENTES EN LINKEDIN</h1>
+        <p class="subtitle">SOLO BÚSQUEDAS DE TRABAJOS REMOTOS.</p>
+        <form id="jobSearchForm" class="space-y-4">
+            <div class="form-group">
+                <label for="keywords" class="form-label">PALABRAS CLAVE</label>
+                <input type="text" id="keywords" placeholder="EJ: DESARROLLADOR, MARKETING" required aria-describedby="keywordsHelp">
+
+            </div>
+            <div class="form-group">
+                <label for="country" class="form-label">LOCALIZACIÓN</label>
+                <select id="country" aria-describedby="countryHelp">
+                    <option value="">CUALQUIER PAÍS</option>
+                    <option value="100446943">ARGENTINA</option>
+                    <option value="103644278">ESTADOS UNIDOS</option>
+                    <option value="91000011">LATINOAMÉRICA</option>
+                    <option value="91000000">UNIÓN EUROPEA</option>
+                    <option value="92000000">TODO EL MUNDO</option>
+                </select>
+
+            </div>
+            <div class="form-group">
+                <label for="timeFilter" class="form-label">PUBLICADO EN</label>
+                <select id="timeFilter">
+                    <option value="">CUALQUIER MOMENTO</option>
+                    <option value="r3600">ÚLTIMA HORA</option>
+                    <option value="r7200">ÚLTIMAS 2 HORAS</option>
+                    <option value="r10800">ÚLTIMAS 3 HORAS</option>
+                    <option value="r14400">ÚLTIMAS 4 HORAS</option>
+                    <option value="r18000">ÚLTIMAS 5 HORAS</option>
+                    <option value="r21600">ÚLTIMAS 6 HORAS</option>
+                    <option value="r25200">ÚLTIMAS 7 HORAS</option>
+                    <option value="r28800">ÚLTIMAS 8 HORAS</option>
+                    <option value="r32400">ÚLTIMAS 9 HORAS</option>
+                    <option value="r36000">ÚLTIMAS 10 HORAS</option>
+                    <option value="r39600">ÚLTIMAS 11 HORAS</option>
+                    <option value="r43200">ÚLTIMAS 12 HORAS</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="experienceLevel" class="form-label">NIVEL DE EXPERIENCIA</label>
+                <select id="experienceLevel">
+                    <option value="">CUALQUIER NIVEL</option>
+                    <option value="1">PASANTÍA</option>
+                    <option value="2">NIVEL INICIAL</option>
+                    <option value="3">ASOCIADO</option>
+                    <option value="4">INTERMEDIO</option>
+                    <option value="5">SENIOR</option>
+                    <option value="6">DIRECTOR</option>
+                </select>
+            </div>
+            <div class="form-group flex items-center">
+                <input type="checkbox" id="easyApply" class="mr-2">
+                <label for="easyApply" class="text-[#000000] text-sm">SOLICITUD SENCILLA</label>
+            </div>
+            <div class="form-group flex items-center">
+                <input type="checkbox" id="lessThanTen" class="mr-2">
+                <label for="lessThanTen" class="text-[#000000] text-sm">MENOS DE DIEZ CANDIDATOS</label>
+            </div>
+            <div class="flex space-x-4">
+                <button type="submit" class="btn btn-primary">
+                    <span class="spinner" id="spinner"></span>
+                    BUSCAR
+                </button>
+                <button type="button" class="btn btn-secondary" id="saveSearch">GUARDAR BÚSQUEDA</button>
+            </div>
+            <div class="alert alert-error" id="errorAlert" role="alert"></div>
+            <div class="alert alert-success" id="successAlert" role="alert"></div>
+        </form>
+        <div class="saved-searches">
+            <h3>BÚSQUEDAS GUARDADAS</h3>
+            <select id="savedSearches" class="w-full">
+                <option value="">SELECCIONA UNA BÚSQUEDA</option>
+            </select>
+            <div class="saved-search-actions">
+                <button class="btn btn-primary btn-sm" id="loadSearch">CARGAR</button>
+                <button class="btn btn-secondary btn-sm" id="deleteSearch">ELIMINAR</button>
+            </div>
+        </div>
+        <p class="footer-note">
+            ESTA HERRAMIENTA MODIFICA LA URL DE LINKEDIN PARA FILTRAR OFERTAS DE EMPLEO. DEPENDE DE LA ESTRUCTURA DE URL DE LINKEDIN Y PUEDE NO FUNCIONAR SI LINKEDIN CAMBIA SU SITIO WEB. ESTA HERRAMIENTA NO ESTÁ AFILIADA NI RESPALDADA POR LINKEDIN. SIEMPRE VERIFICA LA FECHA DE PUBLICACIÓN DEL EMPLEO EN LINKEDIN.
+        </p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

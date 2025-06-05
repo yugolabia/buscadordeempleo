@@ -1,0 +1,566 @@
+:root {
+    --bg-color: #f5f5f5;
+    --text-color: #000000;
+    --container-bg: #FFFFFF;
+    --form-bg: #f8f8f8;
+    --border-color: #000000;
+    --shadow-color: #000000;
+    --hover-shadow: #666666;
+    --description-bg: #FFFFFF;
+    --description-text: #000000;
+    --footer-bg: #000000;
+    --footer-text: #FFFFFF;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #000000;
+        --text-color: #FFFFFF;
+        --container-bg: #1a1a1a;
+        --form-bg: #2a2a2a;
+        --border-color: #FFFFFF;
+        --shadow-color: rgba(255,255,255,0.3);
+        --hover-shadow: #999999;
+        --description-bg: #2a2a2a;
+        --description-text: #FFFFFF;
+        --footer-bg: #2a2a2a;
+        --footer-text: #FFFFFF;
+    }
+}
+
+/* Transición global para cambios de tema */
+* {
+    transition: background-color 0.3s ease, 
+                color 0.3s ease, 
+                border-color 0.3s ease, 
+                box-shadow 0.3s ease;
+}
+
+/* Animaciones base */
+@keyframes fadeIn {
+    from { 
+        opacity: 0;
+        filter: blur(5px);
+    }
+    to { 
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+@keyframes scaleIn {
+    from { 
+        transform: scale(0.95); 
+        opacity: 0; 
+    }
+    to { 
+        transform: scale(1); 
+        opacity: 1; 
+    }
+}
+
+body {
+    font-family: 'IBM Plex Mono', monospace;
+    background: #000000;
+    margin: 0;
+    padding: 2rem;
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--container-bg);
+    border: 2px solid var(--border-color);
+    box-shadow: 8px 8px 0 var(--shadow-color);
+    border-radius: 8px;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.container:hover {
+    transform: none;
+}
+
+.agency-logo {
+    display: block;
+    margin: 0 auto 1.5rem;
+    width: 100%;
+    max-height: 100px;
+    object-fit: scale-down;
+    background-color: #FFFFFF;
+    transition: transform 0.3s ease;
+}
+
+.agency-logo:hover {
+    transform: scale(1.02);
+}
+
+.description {
+    margin: 1rem 0;
+    padding: 1.5rem;
+    background: var(--description-bg);
+    text-align: center;
+}
+
+.description p {
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--description-text);
+    letter-spacing: 0.5px;
+}
+
+.description p:last-child {
+    margin-bottom: 0;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-family: 'IBM Plex Mono', monospace;
+    animation: fadeIn 0.8s ease-out;
+    position: relative;
+}
+
+h1:after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--border-color);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+h1:hover:after {
+    width: 100px;
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--text-color);
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    font-family: 'IBM Plex Mono', monospace;
+    animation: fadeIn 0.8s ease-out;
+    position: relative;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    background: var(--form-bg);
+    padding: 1.5rem;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+.form-group:nth-child(1) { animation-delay: 0.1s; }
+.form-group:nth-child(2) { animation-delay: 0.2s; }
+.form-group:nth-child(3) { animation-delay: 0.3s; }
+.form-group:nth-child(4) { animation-delay: 0.4s; }
+
+.form-group:hover {
+    transform: none;
+}
+
+.form-label {
+    display: block;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+input[type="text"], select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--border-color);
+    background: var(--container-bg);
+    color: var(--text-color);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    border-radius: 4px;
+    height: 48px;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+input[type="text"]:hover, select:hover {
+    transform: none;
+}
+
+input[type="text"]:focus, select:focus {
+    outline: none;
+    border-color: var(--text-color);
+    transform: none;
+}
+
+input[type="checkbox"] {
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid var(--border-color);
+    background: var(--container-bg);
+    accent-color: var(--text-color);
+    cursor: pointer;
+    margin-right: 0.5rem;
+    transform: none !important;
+    transition: none !important;
+}
+
+.btn {
+    display: block;
+    border: 3px solid var(--border-color);
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 0;
+    width: 100%;
+    margin: 1rem 0;
+    font-family: 'IBM Plex Mono', monospace;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.1);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.btn:hover:after {
+    transform: translateX(0);
+}
+
+.btn-primary {
+    background: var(--text-color);
+    color: var(--bg-color);
+    padding: 1.5rem;
+    font-size: 1.25rem;
+    box-shadow: 8px 8px 0 var(--shadow-color);
+}
+
+.btn-primary:hover {
+    transform: scale(1.02);
+    box-shadow: 10px 10px 0 var(--shadow-color);
+}
+
+.btn-secondary {
+    background: #FFFFFF;
+    color: #000000;
+    padding: 1.5rem;
+    font-size: 1.25rem;
+    box-shadow: 8px 8px 0 var(--shadow-color);
+}
+
+.btn-secondary:hover {
+    transform: scale(1.02);
+    box-shadow: 10px 10px 0 var(--shadow-color);
+}
+
+.flex.space-x-4 {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 2rem 0;
+    width: 100%;
+}
+
+.alert {
+    display: none;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border: 2px solid;
+    font-family: 'IBM Plex Mono', monospace;
+    text-align: center;
+}
+
+.alert-error {
+    background: #000000;
+    color: #FF0000;
+    border-color: #FF0000;
+}
+
+.alert-success {
+    background: #000000;
+    color: #00FF00;
+    border-color: #00FF00;
+}
+
+.spinner {
+    display: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 3px solid #000000;
+    border-top: 3px solid #FFFFFF;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-right: 1rem;
+}
+
+.saved-searches {
+    border-top: 2px solid #333333;
+    opacity: 0;
+    animation: scaleIn 0.5s ease-out 0.5s forwards;
+}
+
+.saved-searches h3 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    letter-spacing: 1px;
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+.saved-searches select {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.saved-search-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.btn-sm {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    transition: transform 0.2s ease;
+}
+
+.btn-sm:hover {
+    transform: scale(1.05);
+}
+
+.footer-note {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: var(--footer-bg);
+    color: var(--footer-text);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    letter-spacing: 1px;
+    border: 1px solid var(--border-color);
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+/* Toggle modo oscuro */
+.theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+    background: var(--container-bg);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.theme-toggle:hover {
+    transform: rotate(180deg);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+
+    .container {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    .form-group {
+        padding: 1rem;
+    }
+
+    .btn {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+
+    .saved-searches h3 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-group {
+        padding: 0.75rem;
+    }
+
+    input[type="text"], select {
+        font-size: 0.8rem;
+    }
+
+    .btn {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Selector de idioma */
+.language-selector {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1000;
+}
+
+.language-selector select {
+    padding: 0.5rem;
+    border: 2px solid var(--border-color);
+    background: var(--container-bg);
+    color: var(--text-color);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Mensaje de confirmación */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.confirm-dialog {
+    background: var(--container-bg);
+    border: 2px solid var(--border-color);
+    box-shadow: 8px 8px 0 var(--shadow-color);
+    padding: 2rem;
+    max-width: 90%;
+    width: 400px;
+    text-align: center;
+    animation: scaleIn 0.3s ease-out;
+    position: relative;
+}
+
+.confirm-dialog p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+    color: var(--text-color);
+}
+
+.confirm-dialog .buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.confirm-dialog .btn {
+    margin: 0;
+    width: auto;
+    min-width: 120px;
+}
+
+#confirmDelete {
+    background: #ff3b3b;
+    color: white;
+    border-color: #ff3b3b;
+}
+
+#cancelDelete {
+    background: var(--container-bg);
+    color: var(--text-color);
+}
+
+/* Animación para el hover de los botones de acción */
+.btn-sm:hover {
+    animation: bounce 0.5s ease infinite;
+}
+
+/* Efecto de hover para el logo */
+.agency-logo:hover {
+    transform: scale(1.02);
+}
+
+/* Animación para la descripción */
+.description {
+    animation: fadeIn 0.8s ease-out 0.3s both;
+}
+
+.description p {
+    /* opacity: 0; */
+    animation: slideIn 0.5s ease-out forwards;
+}
+
+.description p:nth-child(1) { animation-delay: 0.4s; }
+.description p:nth-child(2) { animation-delay: 0.6s; }
+
+/* Animación para el título */
+.subtitle:hover:after {
+    width: 100px;
+}
+
+/* Estilo para la flecha del select */
+select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+    padding-right: 2.5rem;
+}
+
+.form-group.flex.items-center {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    transform: none !important;
+    transition: none !important;
+}
+
+.form-group.flex.items-center:hover {
+    transform: none !important;
+}
+
+.form-group.flex.items-center label {
+    cursor: pointer;
+    user-select: none;
+    color: var(--text-color);
+} 
